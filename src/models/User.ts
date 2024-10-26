@@ -14,6 +14,7 @@ export interface IUser extends Document {
     password: string,
     address: Adress;
     contact_number: string;
+    role: string
 }
 
 
@@ -29,6 +30,7 @@ const UserSchema: Schema<IUser> = new mongoose.Schema({
   password: { type: String, required: true },
   address: { type: AdressSchema, required: true },
   contact_number:{ type: String, required: true },
+  role: { type: String, enum:['admin','user'], default:'user' }
 },{timestamps: true})
 
 const UserModel:Model<IUser> = mongoose.model<IUser>('User',UserSchema)
